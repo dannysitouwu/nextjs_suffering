@@ -1,26 +1,25 @@
 'use client';
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { CardContainer, CardBody, CardItem } from "./ui/3d-card";
+import { CardContainer, CardBody } from "./ui/3d-card";
 import BlurOverlay from "./ui/BlurOverlay";
 import Menu from "./sidermenu";
-import { line } from "motion/react-client";
-
 export const scrollContainerId = "main-scroll-container";
 
 export default function Page() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isBlurring, setIsBlurring] = useState(false);
-  let blurTimeout: NodeJS.Timeout;
+  const blurTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
     const sections = container.querySelectorAll("section[id]");
+
     const onScroll = () => {
       setIsBlurring(true);
-      clearTimeout(blurTimeout);
-      blurTimeout = setTimeout(() => setIsBlurring(false), 350);
+      if (blurTimeout.current) clearTimeout(blurTimeout.current);
+      blurTimeout.current = setTimeout(() => setIsBlurring(false), 350);
+
       let current = "";
       sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
@@ -30,56 +29,57 @@ export default function Page() {
           current = section.id;
         }
       });
-      if (current) {
-        if (window.location.hash !== `#${current}`) {
-          history.replaceState(null, "", `#${current}`);
-        }
+
+      if (current && window.location.hash !== `#${current}`) {
+        history.replaceState(null, "", `#${current}`);
       }
     };
+
     container.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
-    // scroll blur
     const onHashChange = () => {
-      const hash = window.location.hash.replace('#', '');
-      if (hash) {
-        const target = container.querySelector(`#${hash}`);
-        if (target) {
-          setIsBlurring(true);
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          clearTimeout(blurTimeout);
-          blurTimeout = setTimeout(() => setIsBlurring(false), 600);
-        }
+      const hash = window.location.hash.replace("#", "");
+      const target = container.querySelector(`#${hash}`);
+      if (target) {
+        setIsBlurring(true);
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (blurTimeout.current) clearTimeout(blurTimeout.current);
+        blurTimeout.current = setTimeout(() => setIsBlurring(false), 600);
       }
     };
-    window.addEventListener('hashchange', onHashChange);
+
+    window.addEventListener("hashchange", onHashChange);
     setTimeout(onHashChange, 100);
 
-    const onCustomScroll = (e: any) => {
-      const hash = e.detail?.hash;
-      if (hash) {
-        const target = container.querySelector(`#${hash}`);
-        if (target) {
-          setIsBlurring(true);
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          clearTimeout(blurTimeout);
-          blurTimeout = setTimeout(() => setIsBlurring(false), 600);
-        }
+    const onCustomScroll = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      const hash = customEvent.detail?.hash;
+      const target = container.querySelector(`#${hash}`);
+      if (target) {
+        setIsBlurring(true);
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (blurTimeout.current) clearTimeout(blurTimeout.current);
+        blurTimeout.current = setTimeout(() => setIsBlurring(false), 600);
       }
     };
-    window.addEventListener('scroll-to-section', onCustomScroll);
+
+    window.addEventListener("scroll-to-section", onCustomScroll);
 
     return () => {
       container.removeEventListener("scroll", onScroll);
-      window.removeEventListener('hashchange', onHashChange);
-      window.removeEventListener('scroll-to-section', onCustomScroll);
-      clearTimeout(blurTimeout);
+      window.removeEventListener("hashchange", onHashChange);
+      window.removeEventListener("scroll-to-section", onCustomScroll);
+      if (blurTimeout.current) clearTimeout(blurTimeout.current);
     };
   }, []);
 
   return (
     <div className="flex w-full h-screen overflow-hidden">
-      <aside className="flex-shrink-0 z-30 relative" style={{ width: 120, minWidth: 120, maxWidth: 120, height: '100vh' }}>
+      <aside
+        className="flex-shrink-0 z-30 relative"
+        style={{ width: 120, minWidth: 120, maxWidth: 120, height: "100vh" }}
+      >
         <Menu />
       </aside>
       <main className="flex-1 h-full relative" style={{ minWidth: 0 }}>
@@ -88,33 +88,33 @@ export default function Page() {
             overflow: hidden !important;
           }
           #${scrollContainerId} {
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* IE 10+ */
+            scrollbar-width: none;
+            -ms-overflow-style: none;
           }
           #${scrollContainerId}::-webkit-scrollbar {
-            display: none; /* Chrome/Safari/Webkit */
+            display: none;
           }
         `}</style>
         <div
           ref={scrollRef}
           id={scrollContainerId}
           style={{
-            minHeight: '100vh',
-            minWidth: '100vw',
-            width: '100vw',
-            height: '100vh',
-            overflowX: 'auto',
-            overflowY: 'auto',
-            scrollBehavior: 'smooth',
+            minHeight: "100vh",
+            minWidth: "100vw",
+            width: "100vw",
+            height: "100vh",
+            overflowX: "auto",
+            overflowY: "auto",
+            scrollBehavior: "smooth",
             backgroundImage: "url('/corkboard.jpeg')",
-            backgroundAttachment: 'local',
-            backgroundRepeat: 'repeat',
-            backgroundSize: 'auto',
-            backgroundPosition: 'center',
+            backgroundAttachment: "local",
+            backgroundRepeat: "repeat",
+            backgroundSize: "auto",
+            backgroundPosition: "center",
             margin: 0,
             padding: 0,
-            filter: isBlurring ? `blur(${8}px)` : 'none',
-            transition: 'filter 0.25s cubic-bezier(.4,2,.6,1)',
+            filter: isBlurring ? `blur(${8}px)` : "none",
+            transition: "filter 0.25s cubic-bezier(.4,2,.6,1)",
           }}>
           <BlurOverlay scrollRef={scrollRef as any} isBlurring={isBlurring} />
           <div
