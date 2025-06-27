@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 interface BlurOverlayProps {
-  scrollRef: React.RefObject<HTMLDivElement>;
+  scrollRef: React.RefObject<HTMLDivElement | null>;
   isBlurring: boolean;
 }
 

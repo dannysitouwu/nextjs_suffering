@@ -116,7 +116,7 @@ export default function Page() {
             filter: isBlurring ? `blur(${8}px)` : "none",
             transition: "filter 0.25s cubic-bezier(.4,2,.6,1)",
           }}>
-          <BlurOverlay scrollRef={scrollRef as any} isBlurring={isBlurring} />
+          <BlurOverlay scrollRef={scrollRef} isBlurring={isBlurring} />
           <div
             style={{
               height: 'auto',
@@ -155,7 +155,7 @@ export default function Page() {
                 <div style={{ gridColumn: '1 / span 2', gridRow: '1 / span 2', zIndex: 1, height: '100%', width: '100%' }}>
                   <CardContainer className="h-full w-full">
                     <CardBody className="card3d h-full w-full" backgroundImage="/cleanpaper.png" style={{ backgroundSize: 'cover', backgroundRepeat: 'no-repeat', borderRadius: 18, border: '1.5px solid #e0d6c3', boxShadow: '0 56px 160px 32px rgba(0,0,0,0.75)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '2rem', width: '100%', height: '100%' }}>
-                      <h1 id="home-title" style={{ fontSize: 36, fontWeight: 600, marginBottom: 16, textAlign: 'center', fontFamily: 'Caveat, cursive', color: '#2d2d2d', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>Dannysito's Zone</h1>
+                      <h1 id="home-title" style={{ fontSize: 36, fontWeight: 600, marginBottom: 16, textAlign: 'center', fontFamily: 'Caveat, cursive', color: '#2d2d2d', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>Dannysito&#39;s Zone</h1>
                       <p style={{ fontSize: 18, fontWeight: 400, marginBottom: 0, textAlign: 'center', color: '#4B3F2D', fontFamily: 'Caveat, cursive', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>¡This is a portfolio experiment from a junior student systems engineer who loves his golden retriever!</p>
                     </CardBody>
                   </CardContainer>
@@ -211,7 +211,7 @@ export default function Page() {
                 <CardContainer>
                   <CardBody className="card3d" backgroundImage="/rustpaper.png" style={{ backgroundSize: 'cover', backgroundRepeat: 'no-repeat', borderRadius: 18, border: '1.5px solid #e0d6c3', height: '100%', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', boxShadow: '0 56px 160px 32px rgba(0,0,0,0.75)', padding: '2.5rem 2rem 2rem 2rem' }}>
                     <h1 style={{ fontSize: 32, fontWeight: 700, marginBottom: 16, textAlign: 'center', fontFamily: 'Caveat, cursive', color: '#2d2d2d', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>Some info</h1>
-                    <p style={{ fontSize: 18, fontWeight: 400, marginBottom: 0, textAlign: 'center', color: '#4B3F2D', fontFamily: 'Caveat, cursive', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>I study at UNADECA and... it's an experience.<br />I dont like here</p>
+                    <p style={{ fontSize: 18, fontWeight: 400, marginBottom: 0, textAlign: 'center', color: '#4B3F2D', fontFamily: 'Caveat, cursive', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>I study at UNADECA and... it&#39;s an experience.<br />I don&#39;t like here</p>
                   </CardBody>
                 </CardContainer>
               </div>
