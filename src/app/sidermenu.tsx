@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from "react";
+import { scrollContainerId } from "./lib/constants";
 
 const lines = [
   { to: "#home", key: 1 },
@@ -8,16 +9,18 @@ const lines = [
   { to: "#contact_me", key: 4 },
 ];
 
-const scrollContainerId = "main-scroll-container";
-
 export default function Menu() {
-  const animRefs = lines.map(() => useRef<HTMLDivElement>(null));
+  const animRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    animRefs.current = animRefs.current.slice(0, lines.length);
+  }, []);
 
   const handleClick = (to: string, idx: number) => {
     window.dispatchEvent(new CustomEvent("scroll-to-section", { detail: { hash: to.replace("#", "") } }));
     setActive(idx);
-    const el = animRefs[idx]?.current;
+    const el = animRefs.current[idx];
     if (el) {
       el.animate(
         [
@@ -98,7 +101,7 @@ export default function Menu() {
         {lines.map((line, idx) => (
           <div
             key={line.key}
-            ref={animRefs[idx]}
+            ref={el => { animRefs.current[idx] = el; }}
             onClick={() => handleClick(line.to, idx)}
             style={{
               width: 60,

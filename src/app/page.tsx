@@ -1,9 +1,10 @@
 'use client';
+
 import { useEffect, useRef, useState } from "react";
 import { CardContainer, CardBody } from "./ui/3d-card";
 import BlurOverlay from "./ui/BlurOverlay";
 import Menu from "./sidermenu";
-export const scrollContainerId = "main-scroll-container";
+import { scrollContainerId } from "./lib/constants";
 
 export default function Page() {
   const scrollRef = useRef<HTMLDivElement>(null);
