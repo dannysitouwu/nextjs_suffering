@@ -85,6 +85,9 @@ export default function Page() {
       </aside>
       <main className="flex-1 h-full relative" style={{ minWidth: 0 }}>
         <style>{`
+          html, body, * {
+            font-family: 'Caveat', Arial, Helvetica, sans-serif !important;
+          }
           html, body {
             overflow: hidden !important;
           }
@@ -94,6 +97,53 @@ export default function Page() {
           }
           #${scrollContainerId}::-webkit-scrollbar {
             display: none;
+          }
+          @media (max-width: 600px) {
+            .bento-grid {
+              display: flex !important;
+              flex-direction: column !important;
+              align-items: center !important;
+              justify-content: center !important;
+              gap: 1.2rem !important;
+              max-width: 100vw !important;
+              width: 100vw !important;
+              padding: 0 1vw !important;
+            }
+            .bento-grid > div {
+              width: 100% !important;
+              max-width: 98vw !important;
+              margin: 0 auto !important;
+              height: auto !important;
+              display: flex !important;
+              flex-direction: column !important;
+              align-items: center !important;
+              justify-content: center !important;
+            }
+            .card3d, .bento-grid .card3d, .bento-grid > div {
+              font-size: 6.25rem !important;
+              font-weight: 600 !important;
+              letter-spacing: 0.03em !important;
+              font-family: 'Caveat', Arial, Helvetica, sans-serif !important;
+              color: #222 !important;
+              text-align: center !important;
+            }
+            .card3d h1, .bento-grid h1 {
+              font-size: 2.5rem !important;
+              font-weight: 800 !important;
+              font-family: 'Caveat', Arial, Helvetica, sans-serif !important;
+              color: #222 !important;
+              text-align: center !important;
+            }
+            .card3d p, .bento-grid p {
+              font-size: 1.2rem !important;
+              font-weight: 600 !important;
+              font-family: 'Caveat', Arial, Helvetica, sans-serif !important;
+              color: #222 !important;
+              text-align: center !important;
+            }
+            #${scrollContainerId} {
+              overflow-x: hidden !important;
+            }
           }
         `}</style>
         <div
@@ -114,8 +164,6 @@ export default function Page() {
             backgroundPosition: "center",
             margin: 0,
             padding: 0,
-            filter: isBlurring ? `blur(${8}px)` : "none",
-            transition: "filter 0.25s cubic-bezier(.4,2,.6,1)",
           }}>
           <BlurOverlay scrollRef={scrollRef} isBlurring={isBlurring} />
           <div
@@ -144,20 +192,23 @@ export default function Page() {
               }}
               id="home"
             >
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                gridTemplateRows: 'repeat(3, 200px)',
-                gap: '2.0rem',
-                maxWidth: '1000px',
-                width: '100%',
-                boxSizing: 'border-box',
-              }}>
+              <div
+                className="bento-grid"
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(3, 1fr)',
+                  gridTemplateRows: 'repeat(3, 200px)',
+                  gap: '2.0rem',
+                  maxWidth: '1000px',
+                  width: '100%',
+                  boxSizing: 'border-box',
+                }}
+              >
                 <div style={{ gridColumn: '1 / span 2', gridRow: '1 / span 2', zIndex: 1, height: '100%', width: '100%' }}>
                   <CardContainer className="h-full w-full">
                     <CardBody className="card3d h-full w-full" backgroundImage="/cleanpaper.png" style={{ backgroundSize: 'cover', backgroundRepeat: 'no-repeat', borderRadius: 18, border: '1.5px solid #e0d6c3', boxShadow: '0 56px 160px 32px rgba(0,0,0,0.75)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '2rem', width: '100%', height: '100%' }}>
-                      <h1 id="home-title" style={{ fontSize: 36, fontWeight: 600, marginBottom: 16, textAlign: 'center', fontFamily: 'Caveat, cursive', color: '#2d2d2d', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>Dannysito&#39;s Zone</h1>
-                      <p style={{ fontSize: 18, fontWeight: 400, marginBottom: 0, textAlign: 'center', color: '#4B3F2D', fontFamily: 'Caveat, cursive', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>¡This is a portfolio experiment from a junior student systems engineer who loves his golden retriever!</p>
+                      <h1 id="home-title" style={{ fontSize: 36, fontWeight: 700, marginBottom: 16, textAlign: 'center', fontFamily: 'Caveat, cursive', color: '#2d2d2d', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>Dannysito&#39;s Zone</h1>
+                      <p style={{ fontSize: 28, fontWeight: 300, marginBottom: 0, textAlign: 'center', color: '#4B3F2D', fontFamily: 'Caveat, cursive', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>¡This is a portfolio experiment from a junior junior student systems engineer who loves his golden retriever!</p>
                     </CardBody>
                   </CardContainer>
                 </div>
@@ -165,8 +216,12 @@ export default function Page() {
                 <div style={{ gridColumn: '3 / span 2', gridRow: '1 / span 1', zIndex: 1, height: '100%', width: '100%' }}>
                   <CardContainer className="h-full w-full">
                     <CardBody className="card3d h-full w-full" backgroundImage="/rustpaper.png" style={{ backgroundSize: 'cover', backgroundRepeat: 'no-repeat', borderRadius: 18, border: '1.5px solid #e0d6c3', boxShadow: '0 56px 160px 32px rgba(0,0,0,0.75)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '1.5rem', width: '100%', height: '100%' }}>
-                      <h1 style={{ fontSize: 24, fontWeight: 700, marginBottom: 8, textAlign: 'center', fontFamily: 'Caveat, cursive', color: '#2d2d2d', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>current status</h1>
-                      <p style={{ fontSize: 16, fontWeight: 400, marginBottom: 0, textAlign: 'center', color: '#4B3F2D', fontFamily: 'Caveat, cursive', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>suffering and studying to oneday be a systems engineer!</p>
+                      <h1 style={{ fontSize: 24, fontWeight: 900, marginBottom: 7, textAlign: 'center', fontFamily: 'Caveat, cursive', color: '#2d2d2d', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>current status</h1>
+                      <div style={{ fontSize: 22, fontWeight: 400, textAlign: 'center', color: '#4B3F2D', fontFamily: 'Caveat, Arial, Helvetica, sans-serif', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80', lineHeight: '1.3' }}>
+                        suffering and studying to one day be a systems engineer!<br />
+                        and aiming to become a backend developer<br />
+                        Motivated to not give up
+                      </div>
                     </CardBody>
                   </CardContainer>
                 </div>
@@ -174,22 +229,39 @@ export default function Page() {
                 <div style={{ gridColumn: '1 / span 2', gridRow: '3 / span 1', zIndex: 1, height: '100%', width: '100%' }}>
                   <CardContainer className="h-full w-full">
                     <CardBody className="card3d h-full w-full" backgroundImage="/board.jpeg" style={{ backgroundSize: 'cover', backgroundRepeat: 'no-repeat', borderRadius: 18, border: '1.5px solid #e0d6c3', boxShadow: '0 56px 160px 32px rgba(0,0,0,0.75)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '1.5rem', width: '100%', height: '100%' }}>
-                      <h1 style={{ fontSize: 28, fontWeight: 700, marginBottom: 12, textAlign: 'center', fontFamily: 'Caveat, cursive', color: '#2d2d2d', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>skills</h1>
-                      <p style={{ fontSize: 16, fontWeight: 400, marginBottom: 0, textAlign: 'center', color: '#4B3F2D', fontFamily: 'Caveat, cursive', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>Java,Type -Script, React, Next.js, Node.js, Python</p>
+                      <h1 style={{ fontSize: 50, fontWeight: 800, marginBottom: 10, textAlign: 'center', fontFamily: 'Caveat, cursive', color: '#2d2d2d', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>skills</h1>
+                      <div style={{ fontSize: 20, fontWeight: 555, color: '#2d2d2d', fontFamily: 'Inter, Arial, Helvetica, sans-serif', textAlign: 'center', lineHeight: '1.4', background: 'rgba(255,255,255,0.7)', borderRadius: 8, padding: '0.5rem 1rem', boxShadow: '0 2px 8px #bdbdbd40', maxWidth: '95%', margin: '0 auto' }}>
+                        <div>JavaScript <span style={{ color: '#6d4c41' }}>(Advanced)</span>: Backend & enterprise apps</div>
+                        <div>TypeScript <span style={{ color: '#6d4c41' }}>(Advanced)</span>: Modern web - apps</div>
+                        <div>React <span style={{ color: '#6d4c41' }}>(Advanced)</span>: Interactive UIs</div>
+                        <div>Next.js <span style={{ color: '#6d4c41' }}>(Advanced)</span>: Websites & Design</div>
+                        <div>Node.js <span style={{ color: '#6d4c41' }}>(Intermediate)</span>: APIs & automation</div>
+                        <div>Python <span style={{ color: '#6d4c41' }}>(Advanced)</span>: API's & analysis</div>
+                      </div>
                     </CardBody>
                   </CardContainer>
                 </div>
 
-                <div style={{ gridColumn: '3 / span 1', gridRow: '2 / span 2', zIndex: 1, height: 'auto', width: 'auto' }}>
+                <div style={{ gridColumn: '3 / span 1', gridRow: '3 / span 1', zIndex: 1, height: 'auto', width: 'auto' }}>
                   <CardContainer className="h-full w-full">
                     <CardBody className="card3d h-full w-full" backgroundImage="/paper_clip.png" style={{ backgroundSize: 'cover', backgroundRepeat: 'no-repeat', borderRadius: 18, border: '1.5px solid #e0d6c3', boxShadow: '0 56px 160px 32px rgba(0,0,0,0.75)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: '1rem', width: '100%', height: '100%' }}>
-                      <h1 style={{ fontSize: 20, fontWeight: 700, marginBottom: 8, textAlign: 'center', fontFamily: 'Caveat, cursive', color: '#2d2d2d', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>fun fact</h1>
-                      <p style={{ fontSize: 14, fontWeight: 400, marginBottom: 0, textAlign: 'center', color: '#4B3F2D', fontFamily: 'Caveat, cursive', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>i really am a golden retriever lover, especially for my female golden retriever called mell!</p>
+                      <h1 style={{ fontSize: 25, fontWeight: 800, marginBottom: 8, textAlign: 'center', fontFamily: 'Caveat, cursive', color: '#2d2d2d', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>fun fact</h1>
+                      <div style={{ fontSize: 20, fontWeight: 400, textAlign: 'center', color: '#4B3F2D', fontFamily: 'Caveat, Arial, Helvetica, sans-serif', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80', lineHeight: '1.3' }}>
+                        i really am a golden retriever lover, especially for my female golden retriever called mell!<br />
+                        I'm almost done graduating
+                      </div>
                     </CardBody>
                   </CardContainer>
                 </div>
               </div>
             </section>
+            <style>{`
+              @media (max-width: 600px) {
+                section#home {
+                  padding: 1.5rem 0.5rem !important;
+                }
+              }
+            `}</style>
             {/* dannysito info */}
             <section
               style={{
@@ -212,11 +284,21 @@ export default function Page() {
                 <CardContainer>
                   <CardBody className="card3d" backgroundImage="/rustpaper.png" style={{ backgroundSize: 'cover', backgroundRepeat: 'no-repeat', borderRadius: 18, border: '1.5px solid #e0d6c3', height: '100%', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', boxShadow: '0 56px 160px 32px rgba(0,0,0,0.75)', padding: '2.5rem 2rem 2rem 2rem' }}>
                     <h1 style={{ fontSize: 32, fontWeight: 700, marginBottom: 16, textAlign: 'center', fontFamily: 'Caveat, cursive', color: '#2d2d2d', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>Some info</h1>
-                    <p style={{ fontSize: 18, fontWeight: 400, marginBottom: 0, textAlign: 'center', color: '#4B3F2D', fontFamily: 'Caveat, cursive', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>I study at UNADECA and... it&#39;s an experience.<br />I don&#39;t like here</p>
+                    <div style={{ fontSize: 24, fontWeight: 400, textAlign: 'center', color: '#4B3F2D', fontFamily: 'Caveat, Arial, Helvetica, sans-serif', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80', lineHeight: '1.3' }}>
+                      I study at UNADECA and... it's an experience.<br />It's weird here<br />
+                      trying to get into Microsoft
+                    </div>
                   </CardBody>
                 </CardContainer>
               </div>
             </section>
+            <style>{`
+              @media (max-width: 600px) {
+                section#dannysito_info {
+                  padding: 1.5rem 0.5rem !important;
+                }
+              }
+            `}</style>
             {/* about dannysito */}
             <section
               style={{
@@ -235,22 +317,30 @@ export default function Page() {
               }}
               id="about_dannysito"
             >
-              <div style={{ maxWidth: '600px', width: '100%' }}>
+              <div style={{ maxWidth: '700px', width: '100%' }}>
                 <CardContainer>
                   <CardBody className="card3d" backgroundImage="/paper_clip.png" style={{ backgroundSize: 'cover', backgroundRepeat: 'no-repeat', borderRadius: 18, border: '1.5px solid #e0d6c3', height: '100%', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', boxShadow: '0 56px 160px 32px rgba(0,0,0,0.75)', padding: '2.5rem 2rem 2rem 2rem' }}>
-                    <h1 style={{ fontSize: 32, fontWeight: 700, marginBottom: 16, textAlign: 'center', fontFamily: 'Caveat, cursive', color: '#2d2d2d', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>About me S2</h1>
-                    <p style={{ fontSize: 18, fontWeight: 400, marginBottom: 0, textAlign: 'center', color: '#4B3F2D', fontFamily: 'Caveat, cursive', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>I love long rides with a good playlist, but I love my dog more!</p>
+                    <h1 style={{ fontSize: 32, fontWeight: 800, marginBottom: 10, textAlign: 'center', fontFamily: 'Caveat', color: '#2d2d2d', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>About me S2</h1>
+                    <div style={{ fontSize: 30, fontWeight: 500, marginBottom: 0, textAlign: 'center', color: '#4B3F2D', fontFamily: 'Caveat', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>I love long rides with a good playlist, but I love my dog!</div>
                   </CardBody>
                 </CardContainer>
               </div>
             </section>
+            <style>{`
+              @media (max-width: 600px) {
+                section#about_dannysito {
+                  padding: 0rem 0.1rem !important;
+                }
+              }
+            `}</style>
             {/* contact me */}
             <section
+              className="contact-section"
               style={{
                 minHeight: '100vh',
                 width: '100%',
                 margin: 0,
-                padding: '5rem 3vw 5rem 120px',
+                padding: '5rem 3vw 5rem 180px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
@@ -264,26 +354,27 @@ export default function Page() {
             >
               <div style={{ width: '100%' }}>
                 <CardContainer className="h-full w-full">
-                  <CardBody className="card3d h-full w-full" backgroundImage="/rustpaper.png" style={{ backgroundSize: 'cover', backgroundRepeat: 'no-repeat', borderRadius: 18, border: '1.5px solid #e0d6c3', height: '100%', width: '100%', minHeight: 250, display: 'flex', flexDirection: 'column', alignItems: 'center', boxShadow: '0 56px 160px 32px rgba(0,0,0,0.75)', padding: '2.5rem 2rem 2rem 2rem' }}>
-                    <h1 style={{ fontSize: 32, fontWeight: 700, marginBottom: 16, textAlign: 'center', fontFamily: 'Caveat, cursive', color: '#2d2d2d', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>Contact</h1>
-                    <div style={{ fontSize: 18, fontWeight: 400, marginBottom: 0, textAlign: 'center', color: '#4B3F2D', fontFamily: 'Caveat, cursive', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>
-                      You are free to contact me through my corporate accounts :D<br />
-                      <div style={{ marginTop: 12 }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600, marginBottom: 8 }}>
+                  <CardBody className="card3d h-full w-full contact-text" backgroundImage="/rustpaper.png" style={{ backgroundSize: 'cover', backgroundRepeat: 'no-repeat', borderRadius: 18, border: '1.5px solid #e0d6c3', height: '100%', width: '100%', minHeight: 250, display: 'flex', flexDirection: 'column', alignItems: 'center', boxShadow: '0 56px 160px 32px rgba(0,0,0,0.75)', padding: '2.5rem 2rem 2rem 2rem' }}>
+                    <h1 style={{ fontSize: 38, fontWeight: 800, marginBottom: 18, textAlign: 'center', fontFamily: 'Caveat, Arial, Helvetica, sans-serif', color: '#2d2d2d', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>Contact</h1>
+                    <div style={{ fontSize: 22, fontWeight: 600, marginBottom: 0, textAlign: 'center', color: '#4B3F2D', fontFamily: 'Caveat, Arial, Helvetica, sans-serif', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80', letterSpacing: '0.02em' }}>
+                      You are free to contact me :D
+                      <br />im also fluent in Portuguese, Spanish and English<br />
+                      <div style={{ marginTop: 16 }}>
+                        <div style={{ display: 'flex', justifyContent: 'center', fontWeight: 700, marginBottom: 10 }}>
                           <span>Email:</span>
-                          <a href="mailto:example@email.com" style={{ color: '#1976D2', textDecoration: 'underline' }}>dannysito@email.com</a>
+                          <a href="mailto:example@email.com" style={{ color: '#1976D2', textDecoration: 'underline', marginLeft: 8 }}>dannysito@email.com</a>
                         </div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600, marginBottom: 8 }}>
+                        <div style={{ display: 'flex', justifyContent: 'center', fontWeight: 700, marginBottom: 10 }}>
                           <span>Phone:</span>
-                          <a href="tel:+506 1234-5678" style={{ color: '#1976D2', textDecoration: 'underline' }}>+506 6343 1521</a>
+                          <a href="tel:+506 1234-5678" style={{ color: '#1976D2', textDecoration: 'underline', marginLeft: 8 }}>+506 6343 1521</a>
                         </div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600, marginBottom: 8 }}>
+                        <div style={{ display: 'flex', justifyContent: 'center', fontWeight: 700, marginBottom: 10 }}>
                           <span>LinkedIn:</span>
-                          <a href="https://www.linkedin.com/in/daniel-fernando-fernandes-silva-530061337/" target="_blank" rel="noopener noreferrer" style={{ color: '#1976D2', textDecoration: 'underline' }}>LinkedIn</a>
+                          <a href="https://www.linkedin.com/in/daniel-fernando-fernandes-silva-530061337/" target="_blank" rel="noopener noreferrer" style={{ color: '#1976D2', textDecoration: 'underline', marginLeft: 8 }}>LinkedIn</a>
                         </div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 600 }}>
+                        <div style={{ display: 'flex', justifyContent: 'center', fontWeight: 700 }}>
                           <span>GitHub:</span>
-                          <a href="https://github.com/dannysitouwu" target="_blank" rel="noopener noreferrer" style={{ color: '#1976D2', textDecoration: 'underline' }}>dannysito_github</a>
+                          <a href="https://github.com/dannysitouwu" target="_blank" rel="noopener noreferrer" style={{ color: '#1976D2', textDecoration: 'underline', marginLeft: 8 }}>dannysito_github</a>
                         </div>
                       </div>
                     </div>
@@ -291,8 +382,36 @@ export default function Page() {
                 </CardContainer>
               </div>
             </section>
+            <style>{`
+              @media (max-width: 600px) {
+                section#contact_me.contact-section {
+                  padding: 0.1rem 0.1rem !important;
+                }
+              }
+            `}</style>
           </div>
         </div>
+        <style>{`
+          @media (max-width: 600px) {
+            .bento-grid {
+              display: grid !important;
+              grid-template-columns: 1fr !important;
+              grid-template-rows: none !important;
+              gap: 1.5rem !important;
+              max-width: 100vw !important;
+              width: 100vw !important;
+              padding: 0 2vw !important;
+            }
+            .bento-grid > div {
+              grid-column: 1 !important;
+              grid-row: auto !important;
+              width: 100% !important;
+              max-width: 95vw !important;
+              margin: auto !important;
+              height: auto !important;
+            }
+          }
+        `}</style>
       </main>
     </div>
   );

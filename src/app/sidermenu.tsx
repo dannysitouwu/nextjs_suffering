@@ -72,6 +72,7 @@ export default function Menu() {
 
   return (
     <div
+      className="sidermenu-responsive"
       style={{
         position: "fixed",
         left: 0,
@@ -87,9 +88,11 @@ export default function Menu() {
         backgroundRepeat: "no-repeat",
         backgroundSize: "360% 119%",
         boxShadow: "2px 0 16px #000000",
+        transition: "all 0.3s cubic-bezier(.4,2,.6,1)",
       }}
     >
       <div
+        className="sidermenu-inner"
         style={{
           width: "100%",
           display: "flex",
@@ -117,6 +120,39 @@ export default function Menu() {
           />
         ))}
       </div>
+      <style>{`
+        @media (max-width: 600px) {
+          .sidermenu-responsive {
+            top: auto !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100vw !important;
+            height: 56px !important;
+            min-width: 0 !important;
+            max-width: 100vw !important;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background: rgba(160,120,86,0.97) !important;
+            background-image: none !important;
+          }
+          .sidermenu-inner {
+            width: 100vw !important;
+            height: 56px !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: space-around !important;
+            gap: 0 !important;
+          }
+          .sidermenu-inner > div {
+            width: 44px !important;
+            height: 5px !important;
+            margin: 0 8px !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }
