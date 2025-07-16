@@ -236,7 +236,7 @@ export default function Page() {
                         <div>React <span style={{ color: '#6d4c41' }}>(Advanced)</span>: Interactive UIs</div>
                         <div>Next.js <span style={{ color: '#6d4c41' }}>(Advanced)</span>: Websites & Design</div>
                         <div>Node.js <span style={{ color: '#6d4c41' }}>(Intermediate)</span>: APIs & automation</div>
-                        <div>Python <span style={{ color: '#6d4c41' }}>(Advanced)</span>: API's & analysis</div>
+                        <div>Python <span style={{ color: '#6d4c41' }}>(Advanced)</span>: API&#39;s & analysis</div>
                       </div>
                     </CardBody>
                   </CardContainer>
@@ -248,7 +248,7 @@ export default function Page() {
                       <h1 style={{ fontSize: 25, fontWeight: 800, marginBottom: 8, textAlign: 'center', fontFamily: 'Caveat, cursive', color: '#2d2d2d', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80' }}>fun fact</h1>
                       <div style={{ fontSize: 20, fontWeight: 400, textAlign: 'center', color: '#4B3F2D', fontFamily: 'Caveat, Arial, Helvetica, sans-serif', textShadow: '0 1px 0 #fff, 0 2px 8px #bdbdbd80', lineHeight: '1.3' }}>
                         i really am a golden retriever lover, especially for my female golden retriever called mell!<br />
-                        I'm almost done graduating
+                        I&#39;m almost done graduating
                       </div>
                     </CardBody>
                   </CardContainer>
